@@ -1,0 +1,5 @@
+package: github.com/pihao/desktop500px
+import:
+- package: github.com/pihao/go-oauth
+- package: github.com/PuerkitoBio/goquery
+  version: ^1.0.1
