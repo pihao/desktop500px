@@ -2,7 +2,7 @@ package px500
 
 import (
 	"encoding/json"
-	"fmt"
+	"github.com/pihao/desktop500px/app"
 	"github.com/pihao/go-oauth/oauth"
 )
 
@@ -22,7 +22,7 @@ func ResponseHasError(body []byte) bool {
 	if (o == PX500Error{}) {
 		return false
 	} else {
-		fmt.Println(string(body))
+		app.Trace(string(body))
 		return true
 	}
 }

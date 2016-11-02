@@ -1,61 +1,53 @@
 package app
 
 import (
-	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"io"
 	"log"
 	"net/http"
 	"os"
-	"github.com/PuerkitoBio/goquery"
 )
 
 // "https://500px.com/photo/179916915/matera-blue-hour-ii-by-pier-luigi-girola"
 func Scrape(pageUrl string) {
 	if pageUrl == "" {
-		fmt.Println("pageUrl is none.")
+		Trace("pageUrl is none.")
 		return
 	}
-	fmt.Println(pageUrl)
+	Trace(pageUrl)
 
 	imgUrl := getImageUrl(pageUrl)
 	if imgUrl == "" {
-		fmt.Println("imgUrl is none.")
+		Trace("imgUrl is none.")
 		return
 	}
-	fmt.Println(imgUrl)
+	Trace(imgUrl)
 
-	saveImage(imgUrl)
+	f := imageFile()
+	saveImage(imgUrl, f)
+	ApplyDesktop(f)
 }
 
 // https://drscdn.500px.org/photo/180711743/q%3D80_m%3D2000/90e17dd62445eed988029bdf528906b2
-func saveImage(url string) {
+func saveImage(url string, file string) {
 	rsp, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fileName := formatImageName(url)
-	file, err := os.Create(fileName)
+	f, err := os.Create(file)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	defer rsp.Body.Close()
-	defer file.Close()
+	defer f.Close()
 
-	_, err = io.Copy(file, rsp.Body)
+	_, err = io.Copy(f, rsp.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Println(fileName, "\nOK.")
-}
-
-func formatImageName(url string) string {
-	dir := AppDir + "/"
-	name := url[len(url)-32:]
-	ext := ".jpg"
-	return dir + name + ext
+	Trace(file)
 }
 
 func getImageUrl(pageUrl string) string {

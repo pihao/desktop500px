@@ -1,27 +1,31 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"time"
-	"math/rand"
-
 	"github.com/pihao/desktop500px/app"
 	"github.com/pihao/desktop500px/px500"
 )
 
-const (
-	version = `desktop500px 0.1`
-)
-
 func main() {
-	rand.Seed(time.Now().Unix())
+	i := flag.Bool("i", false, "enable/disable install mode.")
+	u := flag.Bool("u", false, "enable/disable uninstall mode.")
+	r := flag.Bool("r", false, "enable/disable reinstall mode.")
+	d := flag.Bool("d", false, "enable/disable debug mode.")
+	v := flag.Bool("v", false, "show version.")
+	flag.Parse()
 
-	client, accessToken := px500.GetClientAndToken(false)
-	api := px500.API{*client, *accessToken}
+	app.Debug = *d
 
-	photos := api.GetPhotos()
-	i := rand.Intn(len(photos.Photos))
-	pageUrl := fmt.Sprintf("%v%v", "https://www.500px.com", photos.Photos[i].Url)
-
-	app.Scrape(pageUrl)
+	if *i {
+		app.Install()
+	} else if *u {
+		app.Uninstall()
+	} else if *r {
+		app.Reinstall()
+	} else if *v {
+		fmt.Println(app.VERSION)
+	} else {
+		px500.Run()
+	}
 }
