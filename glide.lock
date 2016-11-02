@@ -1,8 +1,0 @@
-hash: 0794bb5d0a9b2aab6764386d701d9a37913a2a88aa0d98e9d014cac8b78e94ad
-updated: 2016-11-01T17:35:09.022112394+08:00
-imports:
-- name: github.com/pihao/go-oauth
-  version: 6dc238723106def40b4dab4c808da92bcff38c0f
-- name: github.com/PuerkitoBio/goquery
-  version: 56a198aba89cdf7a612e6c762eff9d788b9f2dae
-testImports: []
