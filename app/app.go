@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	VERSION = `desktop500px 0.2`
+	VERSION = `desktop500px 0.3`
 )
 
 var (

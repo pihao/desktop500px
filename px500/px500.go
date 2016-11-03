@@ -15,10 +15,12 @@ func Run() {
 	api := API{*client, *accessToken}
 
 	photos := api.GetPhotos()
-	p := randPhoto(photos)
-	pageUrl := fmt.Sprintf("%v%v", "https://www.500px.com", p.Url)
-
-	app.Scrape(pageUrl)
+	f := *app.ImageFiles(2)
+	page1 := fmt.Sprintf("%v%v", "https://www.500px.com", randPhoto(photos).Url)
+	page2 := fmt.Sprintf("%v%v", "https://www.500px.com", randPhoto(photos).Url)
+	app.Scrape(page1, f[0])
+	app.Scrape(page2, f[1])
+	app.ApplyDesktop(f[0], f[1])
 }
 
 func randPhoto(photos *Photos) *Photo {

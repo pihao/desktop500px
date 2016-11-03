@@ -10,23 +10,19 @@ import (
 )
 
 // "https://500px.com/photo/179916915/matera-blue-hour-ii-by-pier-luigi-girola"
-func Scrape(pageUrl string) {
+func Scrape(pageUrl string, imageFile string) {
 	if pageUrl == "" {
-		Trace("pageUrl is none.")
-		return
+		log.Fatal("pageUrl is none.")
 	}
 	Trace(pageUrl)
 
 	imgUrl := getImageUrl(pageUrl)
 	if imgUrl == "" {
-		Trace("imgUrl is none.")
-		return
+		log.Fatal("imgUrl is none.")
 	}
 	Trace(imgUrl)
 
-	f := imageFile()
-	saveImage(imgUrl, f)
-	ApplyDesktop(f)
+	saveImage(imgUrl, imageFile)
 }
 
 // https://drscdn.500px.org/photo/180711743/q%3D80_m%3D2000/90e17dd62445eed988029bdf528906b2

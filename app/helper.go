@@ -38,20 +38,33 @@ func Osascript(script string) {
 	Trace("Complete.")
 }
 
-func ApplyDesktop(path string) {
-	scpt := fmt.Sprintf(`tell application "System Events"
+func ApplyDesktop(paths ...string) {
+	if len(paths) < 2 {
+		log.Fatal("ERROR::ApplyDesktop(): paths length less than 2.")
+	}
+	scpt := fmt.Sprintf(`set arr to {"%v", "%v"}
+tell application "System Events"
     set desktopCount to count of desktops
     repeat with i from 1 to desktopCount
+        if i <= count of arr then
+            set img to item i of arr
+        else
+            set img to item 1 of arr
+        end if
         tell desktop i
-            set picture to "%v"
+            set picture to img
         end tell
     end repeat
-end tell`, path)
+end tell`, paths[0], paths[1])
 	Osascript(scpt)
 }
 
 // Fix Mac desktop picture cache by dynamic picture name
-func imageFile() string {
-	name := fmt.Sprintf("%v.jpg", time.Now().Second())
-	return path.Join(PictureDir, name)
+func ImageFiles(count int) *[]string {
+	arr := []string{}
+	name := time.Now().Second()
+	for i := 0; i < count; i++ {
+		arr = append(arr, path.Join(PictureDir, fmt.Sprintf("%v_%v.jpg", name, i)))
+	}
+	return &arr
 }
