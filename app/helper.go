@@ -52,6 +52,6 @@ end tell`, path)
 
 // Fix Mac desktop picture cache by dynamic picture name
 func imageFile() string {
-	name := fmt.Sprintf("%v.jpg", time.Now().Hour())
-	return path.Join(AppDir, name)
+	name := fmt.Sprintf("%v.jpg", time.Now().Second())
+	return path.Join(PictureDir, name)
 }

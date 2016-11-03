@@ -1,15 +1,15 @@
 # desktop500px
 
+desktop500px will udpate Mac desktop picture every hour.
+
 ### Install
 
 * Register your application at [https://500px.com/settings/applications]()
-* Download this repository
-* Open `publish` directory
+* Download and unpack install package like [desktop500px_v0.2.7z](https://github.com/pihao/desktop500px/releases/download/v0.2/desktop500px_v0.2.7z)
 * Edit `key.json` with your 500px information
-* Unpack `desktop500px.7z`
-* Execute commands:
+* Execute commands in terminal:
 ```
-    $ cd "path/to/publish/dir"
+    $ cd "path/to/install/package/dir"
     $ ./desktop500px -i
 ```
 

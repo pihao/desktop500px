@@ -7,10 +7,8 @@ import (
 )
 
 type Photos struct {
-	CurrentPage int
-	TotalPages  int
-	TotalItems  int
-	Photos      []Photo
+	Feature string
+	Photos  []Photo
 }
 
 type Photo struct {
@@ -21,6 +19,8 @@ type Photo struct {
 	Lens        string
 	FocalLength string `json:"focal_length"`
 	ISO         string
+	Width       int
+	Height      int
 	TimesViewed int `json:"times_viewed"`
 	Rating      float32
 	Url         string

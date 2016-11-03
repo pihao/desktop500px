@@ -15,8 +15,21 @@ func Run() {
 	api := API{*client, *accessToken}
 
 	photos := api.GetPhotos()
-	i := rand.Intn(len(photos.Photos))
-	pageUrl := fmt.Sprintf("%v%v", "https://www.500px.com", photos.Photos[i].Url)
+	p := randPhoto(photos)
+	pageUrl := fmt.Sprintf("%v%v", "https://www.500px.com", p.Url)
 
 	app.Scrape(pageUrl)
+}
+
+func randPhoto(photos *Photos) *Photo {
+	return __randPhoto(photos, 0)
+}
+func __randPhoto(photos *Photos, randCount int) *Photo {
+	p := photos.Photos[rand.Intn(len(photos.Photos))]
+	if p.Width > p.Height || randCount > 10 {
+		return &p
+	} else {
+		randCount++
+		return __randPhoto(photos, randCount)
+	}
 }

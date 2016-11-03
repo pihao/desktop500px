@@ -3,18 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
+
 	"github.com/pihao/desktop500px/app"
 	"github.com/pihao/desktop500px/px500"
 )
 
 func main() {
-	i := flag.Bool("i", false, "enable/disable install mode.")
-	u := flag.Bool("u", false, "enable/disable uninstall mode.")
-	r := flag.Bool("r", false, "enable/disable reinstall mode.")
-	d := flag.Bool("d", false, "enable/disable debug mode.")
-	v := flag.Bool("v", false, "show version.")
-	flag.Parse()
-
+	i, u, r, d, v := getFlag()
 	app.Debug = *d
 
 	if *i {
@@ -28,4 +23,14 @@ func main() {
 	} else {
 		px500.Run()
 	}
+}
+
+func getFlag() (i, u, r, d, v *bool) {
+	i = flag.Bool("i", false, "install.")
+	u = flag.Bool("u", false, "uninstall.")
+	r = flag.Bool("r", false, "reinstall.")
+	d = flag.Bool("d", false, "debug mode.")
+	v = flag.Bool("v", false, "show version.")
+	flag.Parse()
+	return i, u, r, d, v
 }

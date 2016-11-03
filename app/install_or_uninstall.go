@@ -31,6 +31,7 @@ func Uninstall() {
 func Install() {
 	fmt.Println("Generate key and plist file...")
 	Cmd("mkdir", "-p", AppDir)
+	Cmd("mkdir", "-p", PictureDir)
 	generateKeyFile()
 	generatePlistFile()
 

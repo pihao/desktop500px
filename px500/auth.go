@@ -2,11 +2,12 @@ package px500
 
 import (
 	"encoding/json"
-	"github.com/pihao/desktop500px/app"
-	"github.com/pihao/go-oauth/oauth"
 	"io/ioutil"
 	"log"
 	"path"
+
+	"github.com/pihao/desktop500px/app"
+	"github.com/pihao/go-oauth/oauth"
 )
 
 var accessTokenFile = path.Join(app.AppDir, "access_token.json")
