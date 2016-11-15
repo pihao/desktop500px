@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/pihao/desktop500px/app"
+	"github.com/pihao/desktop500px/src/app"
 )
 
 func Run() {

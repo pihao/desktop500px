@@ -6,7 +6,7 @@ import (
 	"log"
 	"path"
 
-	"github.com/pihao/desktop500px/app"
+	"github.com/pihao/desktop500px/src/app"
 	"github.com/pihao/go-oauth/oauth"
 )
 

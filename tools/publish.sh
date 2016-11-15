@@ -1,5 +1,7 @@
-go test . ./app ./px500
-go fmt . ./app ./px500
+#!/usr/bin/env zsh
+
+$GOPATH/src/github.com/pihao/desktop500px/tools/pre_publish.sh
+
 go install
 
 bin_dir=$GOPATH/bin

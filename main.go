@@ -4,8 +4,8 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/pihao/desktop500px/app"
-	"github.com/pihao/desktop500px/px500"
+	"github.com/pihao/desktop500px/src/app"
+	"github.com/pihao/desktop500px/src/px500"
 )
 
 func main() {
