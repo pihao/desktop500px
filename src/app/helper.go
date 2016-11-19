@@ -29,8 +29,8 @@ func Cmd(name string, arg ...string) (stdout string, err error) {
 func Osascript(script string) (stdout string) {
 	arr := strings.Split(script, "\n")
 	var arg []string
-	for _, l := range arr {
-		arg = append(arg, "-e", l)
+	for _, v := range arr {
+		arg = append(arg, "-e", v)
 	}
 	out, err := Cmd("osascript", arg...)
 	if err != nil {
@@ -60,15 +60,17 @@ end tell`, index+1, picture)
 
 // Fix Mac desktop picture cache by dynamic picture name
 func GenerateFilePaths(count int) *[]string {
-	arr := []string{}
 	name := 0
 	if Debug {
 		name = time.Now().Second()
 	} else {
 		name = time.Now().Hour()
 	}
-	for i := 0; i < count; i++ {
-		arr = append(arr, path.Join(PictureDir, fmt.Sprintf("%v_%v.jpg", name, i)))
+
+	arr := make([]string, count)
+	for i := range arr {
+		arr[i] = path.Join(PictureDir, fmt.Sprintf("%v_%v.jpg", name, i))
 	}
+
 	return &arr
 }
