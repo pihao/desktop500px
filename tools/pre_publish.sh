@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 dev_dir=$GOPATH/src/github.com/pihao/desktop500px
 

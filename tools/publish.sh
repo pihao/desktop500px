@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 $GOPATH/src/github.com/pihao/desktop500px/tools/pre_publish.sh
 
