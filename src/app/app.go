@@ -12,7 +12,7 @@ const (
 var (
 	Debug = false
 
-	AppDir     = path.Join(os.Getenv("HOME"), ".desktop500px")
+	AppDir     = path.Join(os.Getenv("HOME"), "Applications/desktop500px")
 	PictureDir = path.Join(AppDir, "img")
 	KeyFile    = path.Join(AppDir, "key.json")
 )
