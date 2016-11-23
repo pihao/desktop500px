@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-$GOPATH/src/github.com/pihao/desktop500px/tools/pre_publish.sh
-
-go install
-
 bin_dir=$GOPATH/bin
 dev_dir=$GOPATH/src/github.com/pihao/desktop500px
 out_dir=~/Downloads
+
+$dev_dir/tools/pre_publish.sh
+
+go install
 
 cd $out_dir
 f=$(desktop500px -v | tr ' ' '_').7z
